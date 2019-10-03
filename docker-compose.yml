@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+  gerrit:
+    image: gerritcodereview/gerrit
+    build: ./gerrit
+    volumes:
+       - git-volume:/var/gerrit/git
+       - index-volume:/var/gerrit/index
+       - cache-volume:/var/gerrit/cache
+    ports:
+       - "29418:29418"
+       - "8080:8080"
+
+  jenkins:
+    image: jenkins/jenkins:lts 
+    build: ./jenkins
+    volumes:
+       - jenkins_home:/var/jenkins_home 
+    ports:
+       - "8081:8080"
+       - "50000:50000"
+
+volumes:
+  git-volume:
+  index-volume:
+  cache-volume:
+  jenkins_home:
