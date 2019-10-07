@@ -3,6 +3,7 @@ version: '3'
 services:
   gerrit:
     image: gerritcodereview/gerrit
+    container_name: gerrit-cont
     build: ./gerrit
     volumes:
        - git-volume:/var/gerrit/git
@@ -14,6 +15,7 @@ services:
 
   jenkins:
     image: jenkins/jenkins:lts 
+    container_name: jenkins-cont 
     build: ./jenkins
     volumes:
        - jenkins_home:/var/jenkins_home 
@@ -26,3 +28,4 @@ volumes:
   index-volume:
   cache-volume:
   jenkins_home:
+
